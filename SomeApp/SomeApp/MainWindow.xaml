@@ -1,0 +1,15 @@
+﻿<Window x:Class="SomeApp.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:SomeApp"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="350" Width="525">
+    <Grid>
+        <Button x:Name="buttonLoad" Content="Load" HorizontalAlignment="Left" Margin="426,10,0,0" VerticalAlignment="Top" Width="81" Height="27" Click="buttonLoad_Click"/>
+        <TextBox x:Name="textBoxInput" HorizontalAlignment="Left" Height="27" Margin="10,10,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="411"/>
+        <TextBox x:Name="textBoxOutput" HorizontalAlignment="Left" Height="257" Margin="10,52,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="497"/>
+
+    </Grid>
+</Window>
