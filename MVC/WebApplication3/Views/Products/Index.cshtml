@@ -12,6 +12,11 @@
 <table class="table">
     <tr>
         <th>
+            <a href="#" id="remove" class="btn btn-danger btn-xs">
+                <span class="glyphicon glyphicon-remove"></span>
+            </a>
+        </th>
+        <th>
             @Html.DisplayNameFor(model => model.Name)
         </th>
         <th>
@@ -29,6 +34,9 @@
 @foreach (var item in Model) {
     <tr>
         <td>
+            @Html.CheckBox("productForDelete", new { id = item.Id })
+        </td>
+        <td>
             @Html.DisplayFor(modelItem => item.Name)
         </td>
         <td>
@@ -43,3 +51,50 @@
 }
 
 </table>
+
+@section scripts {
+    <script>
+        $(function () {
+            $('#remove').click(function (e) {
+                var $checkboxes = $('input[name="productForDelete"]');
+                var ids = [];
+
+                $checkboxes.each(function (index, element) {
+                    if (element.checked) {
+                        ids.push(element.id);
+                    }
+                });
+
+                @*$.post("@Url.Action("deleteSelected")", { "list": ids }, function (data, status, jqXHR) {
+                    for (var i in ids) {
+                        $('#' + ids[i]).remove();
+                    }
+                }, "json");*@
+
+                var data = { "list": ids };
+
+                $.ajax({
+                    url: '@Url.Action("deleteSelected")',
+                    dataType: 'text',
+                    type: 'post',
+                    contentType: 'application/json',
+                    data: JSON.stringify(data),
+                    success: function (data, textStatus, jQxhr) {
+                        for (var i in ids) {
+                            var el = $('#' + ids[i]).parent().parent();
+                            el.hide(400, function () {
+                                el.remove();
+                            });
+                        }
+                    },
+                    error: function (jqXhr, textStatus, errorThrown) {
+                        console.log(errorThrown);
+                    }
+                });
+
+                //console.log(ids);
+            });
+            
+        });
+    </script>
+    }

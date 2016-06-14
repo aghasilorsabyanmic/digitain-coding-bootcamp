@@ -20,4 +20,9 @@ namespace WebApplication3.Models
         [Display(Name = "Product Price in AMD")]
         public double Price { get; set; }
     }
+
+    public class DeleteSelectedBindingModel
+    {
+        public string[] List { get; set; }
+    }
 }

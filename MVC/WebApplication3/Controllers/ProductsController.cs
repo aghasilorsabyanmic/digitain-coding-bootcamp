@@ -132,6 +132,19 @@ namespace WebApplication3.Controllers
             return RedirectToAction("Index");
         }
 
+        [HttpPost]
+        public async Task DeleteSelected(DeleteSelectedBindingModel model)
+        {
+            foreach (var id in model.List)
+            {
+                var p = new Product { Id = id };
+                db.Products.Attach(p);
+                db.Products.Remove(p);
+            }
+
+            await db.SaveChangesAsync();
+        }
+
 
         public async Task<ActionResult> Random(int quantity)
         {
