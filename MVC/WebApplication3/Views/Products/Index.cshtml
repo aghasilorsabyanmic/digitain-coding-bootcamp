@@ -80,11 +80,14 @@
                     contentType: 'application/json',
                     data: JSON.stringify(data),
                     success: function (data, textStatus, jQxhr) {
-                        for (var i in ids) {
+                        for (var i = 0; i < ids.length; i++) {
                             var el = $('#' + ids[i]).parent().parent();
-                            el.hide(400, function () {
-                                el.remove();
-                            });
+                            el.hide(400);
+                        }
+
+                        for (var i = 0; i < ids.length; i++) {
+                            var el = $('#' + ids[i]).parent().parent();
+                            el.remove();
                         }
                     },
                     error: function (jqXhr, textStatus, errorThrown) {

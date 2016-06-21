@@ -145,7 +145,7 @@ namespace WebApplication3.Controllers
             await db.SaveChangesAsync();
         }
 
-
+        
         public async Task<ActionResult> Random(int quantity)
         {
             if(quantity < 0)
